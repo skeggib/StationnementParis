@@ -4,4 +4,5 @@
 *.vpp.working-journal
 *.lock
 *.lck
+*.bak*
 tmp/*
