@@ -36,17 +36,17 @@ CREATE TABLE emplacement (
     id INTEGER,
     id_csv VARCHAR UNIQUE,
     longueur REAL,
-    places INTEGER,
+    places INTEGER NOT NULL,
     point_geographique VARCHAR,
 
-    regime_principal VARCHAR,
-    regime_particulier VARCHAR,
-    voie INTEGER,
-    secteur INTEGER,
+    regime_principal VARCHAR NOT NULL,
+    regime_particulier VARCHAR NOT NULL,
+    voie INTEGER NOT NULL,
+    secteur INTEGER NOT NULL,
 
     PRIMARY KEY(id),
-    FOREIGN KEY regime_principal REFERENCES regime_principal(nom),
-    FOREIGN KEY regime_particulier REFERENCES regime_particulier(nom),
-    FOREIGN KEY void REFERENCES void(id),
-    FOREIGN KEY secteur REFERENCES secteur(id)
+    FOREIGN KEY(regime_principal) REFERENCES regime_principal(nom),
+    FOREIGN KEY(regime_particulier) REFERENCES regime_particulier(nom),
+    FOREIGN KEY(voie) REFERENCES voie(id),
+    FOREIGN KEY(secteur) REFERENCES secteur(id)
 );
