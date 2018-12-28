@@ -1,17 +1,16 @@
 <?php
 
-if (!isset($argv) || count($argv) < 2)
+if (!isset($argv) || count($argv) < 4)
 {
-    print("Usage: php " . $argv[0] . " <csv_file> [<login> <password>]\n");
+    print("Usage: php " . $argv[0] . " <csv_file> <login> <password>\n");
     return;
 }
 
 $csv_path = $argv[1];
+$login = $argv[2];
+$password = $argv[3];
 
-if (count($argv) >= 4)
-    $pdo = new PDO("pgsql:host=localhost;dbname=StationnementParis", $argv[2], $argv[3]);
-else
-    $pdo = new PDO("pgsql:host=localhost;dbname=StationnementParis");
+$pdo = new PDO("pgsql:host=localhost;dbname=StationnementParis", $login, $password);
 
 $file = fopen($csv_path, "r");
 if (!$file)
