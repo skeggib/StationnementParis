@@ -17,7 +17,7 @@ CREATE TABLE regime_particulier (
 );
 
 CREATE TABLE voie (
-    id INTEGER,
+    id SERIAL,
     nom VARCHAR,
     arrondissement INTEGER,
 
@@ -25,7 +25,7 @@ CREATE TABLE voie (
 );
 
 CREATE TABLE secteur (
-    id INTEGER,
+    id SERIAL,
     arrondissement INTEGER,
     lettre VARCHAR,
 
@@ -33,7 +33,7 @@ CREATE TABLE secteur (
 );
 
 CREATE TABLE emplacement (
-    id INTEGER,
+    id SERIAL,
     id_csv VARCHAR UNIQUE,
     longueur REAL,
     places INTEGER NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE emplacement (
     regime_principal VARCHAR NOT NULL,
     regime_particulier VARCHAR NOT NULL,
     voie INTEGER NOT NULL,
-    secteur INTEGER NOT NULL,
+    secteur INTEGER,
 
     PRIMARY KEY(id),
     FOREIGN KEY(regime_principal) REFERENCES regime_principal(nom),
