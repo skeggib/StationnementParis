@@ -36,7 +36,7 @@ while (($line = fgets($file)) !== false)
     $regime_particulier = $fields[2];
     $longueur = $fields[4];
     $arrondissement = $fields[6];
-    $voie = $fields[7];
+    $voie = $fields[16] . " " . $fields[7];
     $places = $fields[11];
     $secteur = $fields[42];
     $point_geographique = $fields[48];
