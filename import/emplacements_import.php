@@ -39,7 +39,9 @@ while (($line = fgets($file)) !== false)
     $voie = $fields[16] . " " . $fields[7];
     $places = $fields[11];
     $secteur = $fields[42];
-    $point_geographique = $fields[48];
+    $point_geographique = explode(',', $fields[48]);
+    $latitude = str_replace(" ", "", $point_geographique[0]);
+    $longitude = str_replace(" ", "", $point_geographique[1]);
 
     $select = $pdo->prepare("SELECT COUNT(nom) FROM regime_principal WHERE nom=?;");
     $select->execute([$regime_principal]);
@@ -72,8 +74,8 @@ while (($line = fgets($file)) !== false)
         $voie_id = $select->fetch()['id'];
     }
 
-    $insert = $pdo->prepare("INSERT INTO emplacement (id_csv, regime_principal, regime_particulier, longueur, voie, places, point_geographique) VALUES (?, ?,?,?,?,?,?);");
-    $insert->execute([$id, $regime_principal, $regime_particulier, $longueur, $voie_id, $places, $point_geographique]);
+    $insert = $pdo->prepare("INSERT INTO emplacement (id_csv, regime_principal, regime_particulier, longueur, voie, places, latitude, longitude) VALUES (?, ?,?,?,?,?,?,?);");
+    $insert->execute([$id, $regime_principal, $regime_particulier, $longueur, $voie_id, $places, $latitude, $longitude]);
 
     $i++;
     print("\r$i / $line_count (". number_format($i*100/$line_count, 0) ." %)");
