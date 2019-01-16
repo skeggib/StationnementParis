@@ -5,11 +5,7 @@
 Les données utilisées sont issues du site internet [Open Data Paris (https://opendata.paris.fr/)](https://opendata.paris.fr/) :
 
 - [Stationnement sur voie publique - emplacements](https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/table/?disjunctive.regpri&disjunctive.regpar&disjunctive.typsta&disjunctive.arrond)
-- [Stationnement sur voie publique - secteurs résidentiels](https://opendata.paris.fr/explore/dataset/stationnement-sur-voie-publique-secteurs-residentiels/export/)
-- [Addresses](https://opendata.paris.fr/explore/dataset/adresse_paris/table/)
-- [Nomenclature des voies publiques](https://opendata.paris.fr/explore/dataset/noms_voies_actuelles_paris/table/)
-- [Volumes Bâtis](https://opendata.paris.fr/explore/dataset/volumesbatisparis2011/table/?location=17,48.86576,2.33848&basemap=jawg.streets)
-- [Arrondissements](https://opendata.paris.fr/explore/dataset/arrondissements/table/?location=12,48.85889,2.34692&basemap=jawg.streets)
+- [Adresses](https://adresse.data.gouv.fr/data/)
 
 ## Description des datasets
 
