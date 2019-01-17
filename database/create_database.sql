@@ -1,9 +1,10 @@
+DROP TABLE population;
 DROP TABLE adresse;
 DROP TABLE emplacement;
 DROP TABLE secteur;
 DROP TABLE voie;
-DROP TABLE IF EXISTS regime_particulier;
-DROP TABLE IF EXISTS regime_principal;
+DROP TABLE regime_particulier;
+DROP TABLE regime_principal;
 
 CREATE TABLE regime_principal (
     nom VARCHAR,
@@ -64,4 +65,13 @@ CREATE TABLE adresse (
     PRIMARY KEY(id),
     
     FOREIGN KEY(voie) REFERENCES voie(id)
+);
+
+CREATE TABLE population (
+    id SERIAL,
+    n INTEGER NOT NULL,
+    e INTEGER NOT NULL,
+    population INTEGER NOT NULL,
+
+    PRIMARY KEY(id)
 );
