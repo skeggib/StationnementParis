@@ -4,8 +4,8 @@
  * Transforme des coordonnées GPS WGS84 en coordonnées ETRS89 en utilisant une homographie.
  * Cette fonction est adaptée aux coordonnées GPS se situant dans la ville de Paris uniquement, sa
  * précision n'est pas assurée pour le reste du monde.
- * @param $lon La longitude.
- * @param $lat La latitude.
+ * @param lon La longitude.
+ * @param lat La latitude.
  * @return array Un tableau contenant la composante E et N des coordonnées ETRS89.
  */
 function WGS84_to_ETRS89($lon, $lat)
