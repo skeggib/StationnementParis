@@ -6,10 +6,13 @@ Les données utilisées sont issues du site internet [Open Data Paris](https://o
 
 - [Stationnement sur voie publique - emplacements](https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/table/?disjunctive.regpri&disjunctive.regpar&disjunctive.typsta&disjunctive.arrond)
 - [Adresses de Paris](https://adresse.data.gouv.fr/data/)
+- [Données de population carroyées](https://www.insee.fr/fr/statistiques/2520034#consulter)
 
 ## Description des datasets
 
 ### Stationnement sur voie publique - emplacements
+
+[https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/table/?disjunctive.regpri&disjunctive.regpar&disjunctive.typsta&disjunctive.arrond](https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/table/?disjunctive.regpri&disjunctive.regpar&disjunctive.typsta&disjunctive.arrond)
 
 Ce fichier énumère les places de stationnement sur voie publique à Paris.
 
@@ -50,6 +53,12 @@ En gras les champs qui nous intéressent :
 
 ### Adresses de Paris
 
+[https://adresse.data.gouv.fr/data/](https://adresse.data.gouv.fr/data/)
+
+Ce fichier énumère les adresse de Paris.
+
+En gras les champs qui nous intéressent :
+
 - id
 - nom_voie
 - id_fantoir
@@ -66,3 +75,9 @@ En gras les champs qui nous intéressent :
 - **lon** : Longitude
 - **lat** : Latitude
 - **nom_commune** : Arrondissement (à parser)
+
+### Données de population carroyées
+
+[https://www.insee.fr/fr/statistiques/2520034#consulter](https://www.insee.fr/fr/statistiques/2520034#consulter)
+
+Ici l'INSEE fournit une carte carroyée à 200 mètres de données sur la population. Pour créer nos données, nous utilisons le nombre d'habitants dans un carré.
