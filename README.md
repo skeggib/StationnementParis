@@ -43,7 +43,7 @@ Le dossier [import](import) contient les scripts d'importation des données :
 <!-- TODO Combien de m pour le rayon ? -->
 
 La donnée que nous créons est, pour chaque adresse, un indicateur mettant en relation le nombre de 
-places existantes dans un rayon de $n$ mètres autour de cette adresse et la la population estimée
-dans le cercle de rayon $n$.
+places existantes dans un rayon de n mètres autour de cette adresse et la la population estimée
+dans le cercle de rayon n.
 
 <!-- TODO Equations. -->
