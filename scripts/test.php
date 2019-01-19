@@ -26,7 +26,7 @@ if (is_null($coordonnes))
 $population = population_cercle($pdo, $coordonnes[0], $coordonnes[1], $rayon);
 $places = places($pdo, $coordonnes[0], $coordonnes[1], $rayon);
 
-print($places . " places pour " . $population . " habitants dans un rayon de " . $rayon . " mètres.\n");
+print($places . " places pour " . round($population) . " habitants dans un rayon de " . $rayon . " mètres.\n");
 return 0;
 
 ?>
