@@ -1,23 +1,19 @@
 <?php
 
-if (!isset($argv) || count($argv) < 3)
-{
-    print("Usage: php " . $argv[0] . "  <login> <password>\n");
-    return;
-}
-$login = $argv[1];
-$password = $argv[2];
+include_once("conversion.php");
 
-$pdo = new PDO("pgsql:host=skeggib.com;dbname=StationnementParis", "stationnementparispublic", "public");
-selection_places(48.8659650324,2.34922409941,200,$pdo);
-$pdo = null;
-
-
-//Recherche des places autour de l'adresse
-function selection_places($latitude,$longitude,$rayon_recherche,$pdo){
+/**
+ * Compte le nombre place de parking existantes autour d'une position géographique.
+ * @param pdo La connexion à la base de données.
+ * @param latitude La latitude.
+ * @param longitude La longitude.
+ * @param rayon La distance maximale entre la place et la position géographique.
+ * @return int Le nombre de place autour de la position.
+ */
+function places($pdo, $latitude, $longitude, $rayon){
 	$regime_principal=array('PAYANT MIXTE','PAYANT ROTATIF','LOCATION','AUTRE REGIME','GRATUIT'); //Type de places prises en compte
 
-	$coef=$rayon_recherche* 0.0000089; //Rayon de la recherche
+	$coef=$rayon* 0.0000089; //Rayon de la recherche
 
 	//Modification de la longitude et latitude a l aide du coefficient de recherche
 	$lat_min=$latitude-$coef;
@@ -35,7 +31,7 @@ function selection_places($latitude,$longitude,$rayon_recherche,$pdo){
 	while ($donnees = $select->fetch())
 	{
 		//Verification que la donnee se trouve dans le perimetre demande
-		if (distance($latitude,$longitude,$donnees['latitude'],$donnees['longitude'])<=$rayon_recherche){
+		if (distance($latitude,$longitude,$donnees['latitude'],$donnees['longitude'])<=$rayon){
 			//Ajout des places presentes dans le perimetre
 			$nombre_places+=$donnees['places'];
 			//print("\n".$donnees['id']." ".$donnees['places']);
@@ -46,24 +42,26 @@ function selection_places($latitude,$longitude,$rayon_recherche,$pdo){
 	return $nombre_places;
 }
 
-//Calcul de la distance entre deux points
-function distance($lat_a_degre,$lon_a_degre,$lat_b_degre,$lon_b_degre){
+/**
+ * Calcul la distance entre deux position géographiques.
+ * @param lat_a Latitude de la première coordonnée.
+ * @param lon_a Longitude de la première coordonnée.
+ * @param lat_b Latitude de la deuxième coordonnée.
+ * @param lon_b Longitude de la deuxième coordonnée.
+ * @return double La distance calculée.
+ */
+function distance($lat_a, $lon_a, $lat_b, $lon_b){
      
     $R = 6378000; //Rayon de la terre en mètre
  
-    $lat_a = convertRad($lat_a_degre);
-    $lon_a = convertRad($lon_a_degre);
-    $lat_b = convertRad($lat_b_degre);
-    $lon_b = convertRad($lon_b_degre);
+    $lat_a = rad($lat_a);
+    $lon_a = rad($lon_a);
+    $lat_b = rad($lat_b);
+    $lon_b = rad($lon_b);
      
     $d = $R * (pi()/2 - asin(sin($lat_b) * sin($lat_a) + cos($lon_b - $lon_a) * cos($lat_b) * cos($lat_a)));
     //print("\n".$d);
     return $d;
-}
-
-//Conversion en radian
-function convertRad($input){
-        return (pi() * $input)/180;
 }
 
 ?>

@@ -32,4 +32,11 @@ function WGS84_to_ETRS89($lon, $lat)
     return array($x_etrs, $y_etrs);
 }
 
+/**
+ * Converti des degrés en radians.
+ */
+function rad($deg){
+    return (pi() * $input)/180;
+}
+
 ?>
