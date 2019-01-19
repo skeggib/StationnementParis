@@ -18,3 +18,5 @@ function coordonnees($pdo, $numero, $suffix, $rue, $arrondissement)
         return null;
     return array($result['longitude'], $result['latitude']);
 }
+
+?>

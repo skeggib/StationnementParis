@@ -5,12 +5,12 @@ include_once("conversion.php");
 /**
  * Compte le nombre place de parking existantes autour d'une position géographique.
  * @param pdo La connexion à la base de données.
- * @param latitude La latitude.
  * @param longitude La longitude.
+ * @param latitude La latitude.
  * @param rayon La distance maximale entre la place et la position géographique.
  * @return int Le nombre de place autour de la position.
  */
-function places($pdo, $latitude, $longitude, $rayon){
+function places($pdo, $longitude, $latitude, $rayon){
 	$regime_principal=array('PAYANT MIXTE','PAYANT ROTATIF','LOCATION','AUTRE REGIME','GRATUIT'); //Type de places prises en compte
 
 	$coef=$rayon* 0.0000089; //Rayon de la recherche
@@ -31,7 +31,7 @@ function places($pdo, $latitude, $longitude, $rayon){
 	while ($donnees = $select->fetch())
 	{
 		//Verification que la donnee se trouve dans le perimetre demande
-		if (distance($latitude,$longitude,$donnees['latitude'],$donnees['longitude'])<=$rayon){
+		if (distance($longitude,$latitude,$donnees['longitude'],$donnees['latitude'])<=$rayon){
 			//Ajout des places presentes dans le perimetre
 			$nombre_places+=$donnees['places'];
 			//print("\n".$donnees['id']." ".$donnees['places']);
@@ -50,7 +50,7 @@ function places($pdo, $latitude, $longitude, $rayon){
  * @param lon_b Longitude de la deuxième coordonnée.
  * @return double La distance calculée.
  */
-function distance($lat_a, $lon_a, $lat_b, $lon_b){
+function distance($lon_a, $lat_a, $lon_b, $lat_b){
      
     $R = 6378000; //Rayon de la terre en mètre
  
