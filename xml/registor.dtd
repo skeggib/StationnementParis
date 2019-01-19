@@ -1,0 +1,10 @@
+<!ELEMENT record (address+)>
+<!ELEMENT address (indicator, indicator)>
+<!ATTLIST address 
+		number CDATA #REQUIRED
+		street CDATA #REQUIRED
+		district CDATA #REQUIRED>
+<!ELEMENT indicator (#PCDATA)>
+<!ATTLIST indicator 
+		radius (500 | 1000) #REQUIRED>
+

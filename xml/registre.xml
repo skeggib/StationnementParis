@@ -1,0 +1,11 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="no" ?>
+
+<record xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="registor.xsd">
+		
+	<address number="" street="" district="">
+		<indicator radius="500">1</indicator>
+		<indicator radius="1000">0.5</indicator>
+	</address>
+	
+</record>
