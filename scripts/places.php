@@ -1,6 +1,6 @@
 <?php
 
-include_once("conversion.php");
+require_once("conversion.php");
 
 /**
  * Compte le nombre place de parking existantes autour d'une position géographique.

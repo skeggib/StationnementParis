@@ -1,6 +1,6 @@
 <?php
 
-include_once("conversion.php");
+require_once("conversion.php");
 
 /**
  * Récupère la population du carré de 200m de côté dans lequel se trouve la coordonnée.
@@ -9,7 +9,7 @@ include_once("conversion.php");
  * @param lat La latitude.
  * @return int La population du carré.
  */
-function population_carre($pdo, $lon, $lat)
+function populationCarre($pdo, $lon, $lat)
 {
     $pos = WGS84_to_ETRS89($lon, $lat);
 
@@ -32,7 +32,7 @@ function population_carre($pdo, $lon, $lat)
 */
 function densite($pdo, $lon, $lat)
 {
-    return population_carre($pdo, $lon, $lat) / (0.2 * 0.2);
+    return populationCarre($pdo, $lon, $lat) / (0.2 * 0.2);
 }
 
 /**
@@ -43,7 +43,7 @@ function densite($pdo, $lon, $lat)
  * @param rayon Le rayon du cercle en mètres.
  * @return double Une estimation de la population dans le cercle.
 */
-function population_cercle($pdo, $lon, $lat, $rayon)
+function populationCercle($pdo, $lon, $lat, $rayon)
 {
     $rayon_km = $rayon / 1000;
     return densite($pdo, $lon, $lat) * $rayon_km * $rayon_km;

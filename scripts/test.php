@@ -1,8 +1,9 @@
 <?php
 
-include_once("adresse.php");
-include_once("population.php");
-include_once("places.php");
+require_once("adresse.php");
+require_once("population.php");
+require_once("places.php");
+require_once("helpers.php");
 
 if (!isset($argv) || count($argv) < 5)
 {
@@ -16,14 +17,14 @@ $rue = $argv[count($argv) - 3];
 $arrondissement = $argv[count($argv) - 2];
 $rayon = $argv[count($argv) - 1];
 
-$pdo = new PDO("pgsql:host=skeggib.com;dbname=StationnementParis", "stationnementparispublic", "public");
+$pdo = createPDO();
 $coordonnes = coordonnees($pdo, $numero, $suffix, $rue, $arrondissement);
 if (is_null($coordonnes))
 {
     print("Adresse non trouvée.\n");
     return -1;
 }
-$population = population_cercle($pdo, $coordonnes[0], $coordonnes[1], $rayon);
+$population = populationCercle($pdo, $coordonnes[0], $coordonnes[1], $rayon);
 $places = places($pdo, $coordonnes[0], $coordonnes[1], $rayon);
 
 print($places . " places pour " . round($population) . " habitants dans un rayon de " . $rayon . " mètres.\n");
