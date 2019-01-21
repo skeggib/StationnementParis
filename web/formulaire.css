@@ -21,7 +21,7 @@ body
 	border-radius: 10px;
 	width: 40%;
 	margin: auto;
-	/*height: auto;*/
+	height: auto;
 	border-style: groove;
 	text-align: left;
 	padding: 15px;
@@ -44,6 +44,12 @@ label
 .answer
 {
 	width: 200px;
+	margin-bottom: 1.5em;
+	word-wrap: break-word;
+}
+.answer_number
+{
+	width: 50px;
 	margin-bottom: 1.5em;
 	word-wrap: break-word;
 }
@@ -80,7 +86,6 @@ label
   background-color: #555555;
   color: white;
 }
-
 
 
 

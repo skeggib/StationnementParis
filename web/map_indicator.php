@@ -21,24 +21,22 @@
 			foreach($xml as $address)
 			{
 				$attAddress = $address->attributes();
+
 				if(strtolower($attAddress->number) == strtolower($_POST['number']) 
 					&& strtolower($attAddress->street) == strtolower($_POST['street']) 
 					&& strtolower($attAddress->district) == strtolower($_POST['district']))
 				{
 					$addexist = true;
 
-					// $indicator = $address->indicator;
-					// foreach($indicator as $indicator_radius)
-					// {
-					// 	// $attindicator = $indicator->attributes();
-
-					// 	if($attindicator->radius == $_POST['radius'])
-						// {
+					foreach($address as $indicator)
+					{
+						$attindicator = $indicator->attributes();
+						if($attindicator->radius == $_POST['radius'])
+						{
 							echo $_POST['number'].", ".$_POST['street']." ".$_POST['district']." dans un rayon de ".$_POST['radius']."m est de ";
-							echo $address->indicator;
-							// .$indicator_radius. '<br>';
-					// 	}
-					// }
+							echo $indicator;
+						}
+					}
 				}
 			}
 
@@ -54,7 +52,8 @@
   			
   		?>
   	</p>
-
+	
+	<input type="button" value="back" onClick="document.location.href = document.referrer" class="button_reset"/>
 	
 
   </body>
