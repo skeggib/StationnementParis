@@ -19,26 +19,36 @@
 				<legend>Votre Adresse</legend>
 
 				<p>
-					<label for="number">Numero de rue : </label><input type="number" name="number" required class="answer"><br />
+					<label for="number">Numero de rue : </label>
+					<input type="number" name="number" required class="answer_number">
+					<input list="article" type="text" class="answer_number">
+					<datalist id="article">
+					  <option value="">
+					  <option value="bis">
+					  <option value="ter">
+					  <option value="quater">
+					 </datalist>
+					<br />
 
 		  			<label for="street">Complement d'adresse : </label><input type="text" name="street" required class="answer"><br />
 
 		  			<label for="district">Arrondissement : </label><input type="text" name="district" required class="answer"><br />
 
-		  			<label for="radius">Rayon de recherche : </label>
-		  			<input type="range" name="radius" min="0" max="500" step="100" list="steplist" class="answer">
+		  			<!-- <label for="radius">Rayon de recherche : </label> -->
+		  			<!-- <input type="range" name="radius" class="answer" min="0" max="500" step="100" list="steplist">
 					<datalist id="steplist">
-					    <option value ="0" label="0">
-				    	<option value ="100" label="100">
-			    		<option value ="200" label="200">
-		    			<option value ="300" label="300">
-	    				<option value ="400" label="400">
-	    				<option value ="500" label="500">
-					    <!-- <option label="100">100</option>
+					    <option label="100">100</option>
 					    <option label="200">200</option>
 					    <option label="300">300</option>
 					    <option label="400">400</option>
-					    <option label="500">500</option> -->
+					    <option label="500">500</option>
+					</datalist> -->
+					<label for="radius">Rayon de recherche : </label>
+					<input list="radius_range" name="radius" type="text" required class="answer">
+					<datalist id="radius_range">
+					  <option value="100">
+					  <option value="200">
+					  <option value="500">
 					</datalist>
 		  		</p>
 				
