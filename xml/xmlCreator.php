@@ -122,6 +122,7 @@
         $doc->save($path);
     }
 
+    //Exemple d'utilisation
     $doc = createxml();
     $doc = addAddresse($doc, '18', 'bis', 'rue Georges Bizet', '13', '63.202', '57.20', '1', '0.7', '0.8');
     $doc = addAddresse($doc, '263', '', 'rue de Paname', '15', '63.202', '57.20', '1', '0.7', '0.8');
