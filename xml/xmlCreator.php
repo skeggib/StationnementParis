@@ -1,6 +1,10 @@
 <?php
     
-    function createxml($address) {
+    /**
+     * Créer la racine du fichier xml
+     * @return DOMDoculent Le document xml.
+     */
+    function createxml() {
         $doc = new DOMDocument('1.0', 'UTF-8');
         // nous voulons un joli affichage
         $doc->formatOutput = true;
@@ -18,27 +22,56 @@
 
         $root = $doc->appendChild($root);
 
-        foreach ($address as $value) {
+        return $doc;
+    }
+    
+    /**
+     * Ajoute une adresse à la liste
+     * @param doc Le document xml
+     * @param number Le numéro de rue
+     * @param suffix Le suffix du numéro (bis, ter, ...)
+     * @param street Le nom de la ruen
+     * @param district L'arrondissement de l'adresse
+     * @param longitude La longitude de l'adresse
+     * @param latitude La latitude de l'adresse
+     * @param indic100 L'indicateur pour un rayon 100
+     * @param indic200 L'indicateur pour un rayon 200
+     * @param indic500 L'indicateur pour un rayon 500
+     * @return DOMDoculent Le document xml.
+     */
+    function addAddresse($doc, $number, $suffix, $street, $district, $longitude, $latitude, $indic100, $indic200, $indic500) {
+
+            $root = $doc->documentElement;
+
             $adr = $doc->createElement('address');
 
             $num = $doc->createAttribute('number');
-            $street = $doc->createAttribute('street');
-            $district = $doc->createAttribute('district');
+            $sfx = $doc->createAttribute('suffix');
+            $strt = $doc->createAttribute('street');
+            $dstrt = $doc->createAttribute('district');
+            $lgt = $doc->createAttribute('longitude');
+            $ltt = $doc->createAttribute('latitude');
 
-            $num->value = $value[0];
-            $street->value = $value[1];
-            $district->value = $value[2];
+            $num->value = $number;
+            $sfx->value = $suffix;
+            $strt->value = $street;
+            $dstrt->value = $district;
+            $lgt->value = $longitude;
+            $ltt->value = $latitude;
 
             $adr->appendChild($num);
-            $adr->appendChild($street);
-            $adr->appendChild($district);
+            $adr->appendChild($sfx);
+            $adr->appendChild($strt);
+            $adr->appendChild($dstrt);
+            $adr->appendChild($lgt);
+            $adr->appendChild($ltt);
 
             $ind = $doc->createElement('indicator');
             $rad = $doc->createAttribute('radius');
             $rad->value = 100;
             $ind->appendChild($rad);
 
-            $text = $doc->createTextNode($value[3]);
+            $text = $doc->createTextNode($indic100);
             $ind = $adr->appendChild($ind);
             $ind->appendChild($text);
 
@@ -47,7 +80,7 @@
             $rad2->value = 200;
             $ind2->appendChild($rad2);
 
-            $text2 = $doc->createTextNode($value[4]);
+            $text2 = $doc->createTextNode($indic200);
             $ind2 = $adr->appendChild($ind2);
             $ind2->appendChild($text2);
 
@@ -56,20 +89,45 @@
             $rad3->value = 500;
             $ind3->appendChild($rad3);
 
-            $text3 = $doc->createTextNode($value[5]);
+            $text3 = $doc->createTextNode($indic500);
             $ind3 = $adr->appendChild($ind3);
             $ind3->appendChild($text3);
 
             $adr = $root->appendChild($adr);
-        }
 
-        if(!$doc->schemaValidate('xml/registor.xsd')) {
+            return $doc;
+    }
+
+    /**
+     * Valide le fichier xml
+     * @param doc Le document xml
+     * @param string Chemin vers le fichier xsd
+     * @return Boolean True si valide, false sinon
+     */
+    function validate($doc, $path) {
+        if(!$doc->schemaValidate($path)) {
             print 'DOMDocument::schemaValidate() Generated Errors!</n>';
+            return false;
         } else {
-            $doc->save("xml/test.xml");
+            return true;
         }
     }
-    
-    $address = [ [ '18', 'rue Georges Bizet', '13', '1', '0.7', '0.8' ], [ '263', 'rue de Paris', '15', '0.6', '0.7', '1']];
-    createxml($address);
+
+    /**
+     * Sauvegarde le fichier xml
+     * @param doc Le document xml
+     * @param string Chemin de sauvegarde du fichier xml
+     */
+    function saveXMLDocument($doc, $path){
+        $doc->save($path);
+    }
+
+    $doc = createxml();
+    $doc = addAddresse($doc, '18', 'bis', 'rue Georges Bizet', '13', '63.202', '57.20', '1', '0.7', '0.8');
+    $doc = addAddresse($doc, '263', '', 'rue de Paname', '15', '63.202', '57.20', '1', '0.7', '0.8');
+    if(validate($doc, 'registor.xsd')){
+        saveXMLDocument($doc, 'test.xml');
+    } else {
+        //Do something else
+    }
 ?>

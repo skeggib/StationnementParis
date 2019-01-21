@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+
 
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="record">
@@ -18,8 +18,11 @@
               </xs:element>
             </xs:sequence>
             <xs:attribute type="xs:short" name="number" use="optional"/>
+            <xs:attribute type="xs:string" name="suffix" use="optional"/>
             <xs:attribute type="xs:string" name="street" use="optional"/>
             <xs:attribute type="xs:byte" name="district" use="optional"/>
+            <xs:attribute type="xs:float" name="longitude" use="optional"/>
+            <xs:attribute type="xs:float" name="latitude" use="optional"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>

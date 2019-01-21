@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <record>
-  <address number="18" street="rue Georges Bizet" district="13">
+  <address number="18" suffix="bis" street="rue Georges Bizet" district="13" longitude="63.202" latitude="57.20">
     <indicator radius="100">1</indicator>
     <indicator radius="200">0.7</indicator>
     <indicator radius="500">0.8</indicator>
   </address>
-  <address number="263" street="rue de Paris" district="15">
-    <indicator radius="100">0.6</indicator>
+  <address number="263" suffix="" street="rue de Paname" district="15" longitude="63.202" latitude="57.20">
+    <indicator radius="100">1</indicator>
     <indicator radius="200">0.7</indicator>
-    <indicator radius="500">1</indicator>
+    <indicator radius="500">0.8</indicator>
   </address>
 </record>
