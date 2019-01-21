@@ -1,6 +1,7 @@
 <?php
 
 require_once("conversion.php");
+require_once("population.php");
 
 /**
  * Compte le nombre place de parking existantes autour d'une position géographique.
@@ -62,6 +63,15 @@ function distance($lon_a, $lat_a, $lon_b, $lat_b){
     $d = $R * (pi()/2 - asin(sin($lat_b) * sin($lat_a) + cos($lon_b - $lon_a) * cos($lat_b) * cos($lat_a)));
     //print("\n".$d);
     return $d;
+}
+
+function indicateur($pdo, $longitude, $latitude, $rayon)
+{
+	$places = places($pdo, $longitude, $latitude, $rayon);
+	$population = populationCercle($pdo, $longitude, $latitude, $rayon);
+	if ($population != 0)
+		return $places / $population;
+	return 0;
 }
 
 ?>

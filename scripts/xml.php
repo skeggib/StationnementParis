@@ -1,52 +1,124 @@
 <?php
+    
+    /**
+     * Créer la racine du fichier xml
+     * @return DOMDoculent Le document xml.
+     */
+    function createxml() {
+        $doc = new DOMDocument('1.0', 'UTF-8');
+        // nous voulons un joli affichage
+        $doc->formatOutput = true;
+        $doc->xmlStandalone = false;
 
-require_once("adresse.php");
-require_once("population.php");
-require_once("places.php");
-require_once("helpers.php");
+        $root = $doc->createElement('record');
 
-// Arguments CLI
-if (!isset($argv) || count($argv) < 2)
-{
-    print("Usage: php " . $argv[0] . " <path>\n");
-    return;
-}
+        //$rootAttribute = $doc->createAttribute('xmlns:xsi');
+        //$rootAttribute->value = 'http://www.w3.org/2001/XMLSchema-instance';
+        //$root->appendChild($rootAttribute);
 
-// Connexion PDO
-$pdo = new PDO("pgsql:host=localhost;dbname=StationnementParis", "stationnementparispublic", "public");
+        //$rootAttribute = $doc->createAttribute('xsi:noNamespaceSchemaLocation');
+        //$rootAttribute->value = 'registor.xsd';
+        //$root->appendChild($rootAttribute);
 
-// Requête adresses
-$result = $pdo->query("SELECT COUNT(adresse.id) FROM adresse JOIN voie ON adresse.voie = voie.id");
-$count = $result->fetch()['count'];
-$result = $pdo->query("SELECT adresse.numero AS numero, adresse.suffix AS suffix, adresse.longitude AS longitude, adresse.latitude AS latitude, voie.nom AS voie, voie.arrondissement AS arrondissement FROM adresse JOIN voie ON adresse.voie = voie.id");
-if (!$result)
-{
-    print("Query error.\n");
-    return;
-}
+        $root = $doc->appendChild($root);
 
-// Boucle principale
-$i = 0;
-while ($adresse = $result->fetch())
-{
-    // Données de la requête
-    $numero = $adresse['numero'];
-    $suffix = $adresse['suffix'];
-    $voie = $adresse['voie'];
-    $arrondissement = $adresse['arrondissement'];
-    $lon = $adresse['longitude'];
-    $lat = $adresse['latitude'];
+        return $doc;
+    }
+    
+    /**
+     * Ajoute une adresse à la liste
+     * @param doc Le document xml
+     * @param number Le numéro de rue
+     * @param suffix Le suffix du numéro (bis, ter, ...)
+     * @param street Le nom de la ruen
+     * @param district L'arrondissement de l'adresse
+     * @param longitude La longitude de l'adresse
+     * @param latitude La latitude de l'adresse
+     * @param indic100 L'indicateur pour un rayon 100
+     * @param indic200 L'indicateur pour un rayon 200
+     * @param indic500 L'indicateur pour un rayon 500
+     * @return DOMDoculent Le document xml.
+     */
+    function addAddresse($doc, $number, $suffix, $street, $district, $longitude, $latitude, $indic100, $indic200, $indic500) {
 
-    // Calcul des nouvelles données
-    $population = populationCercle($pdo, $lon, $lat, 200);
-    $places = places($pdo, $lon, $lat, 200);
-    $indicateur = $population / $places;
+            $root = $doc->documentElement;
 
-    // TODO Ecriture XML
+            $adr = $doc->createElement('address');
 
-    print($i . " / " . $count . "\n");
-    $i++;
-}
-$pdo = null;
+            $num = $doc->createAttribute('number');
+            $sfx = $doc->createAttribute('suffix');
+            $strt = $doc->createAttribute('street');
+            $dstrt = $doc->createAttribute('district');
+            $lgt = $doc->createAttribute('longitude');
+            $ltt = $doc->createAttribute('latitude');
 
+            $num->value = $number;
+            $sfx->value = $suffix;
+            $strt->value = $street;
+            $dstrt->value = $district;
+            $lgt->value = $longitude;
+            $ltt->value = $latitude;
+
+            $adr->appendChild($num);
+            $adr->appendChild($sfx);
+            $adr->appendChild($strt);
+            $adr->appendChild($dstrt);
+            $adr->appendChild($lgt);
+            $adr->appendChild($ltt);
+
+            $ind = $doc->createElement('indicator');
+            $rad = $doc->createAttribute('radius');
+            $rad->value = 100;
+            $ind->appendChild($rad);
+
+            $text = $doc->createTextNode($indic100);
+            $ind = $adr->appendChild($ind);
+            $ind->appendChild($text);
+
+            $ind2 = $doc->createElement('indicator');
+            $rad2 = $doc->createAttribute('radius');
+            $rad2->value = 200;
+            $ind2->appendChild($rad2);
+
+            $text2 = $doc->createTextNode($indic200);
+            $ind2 = $adr->appendChild($ind2);
+            $ind2->appendChild($text2);
+
+            $ind3 = $doc->createElement('indicator');
+            $rad3 = $doc->createAttribute('radius');
+            $rad3->value = 500;
+            $ind3->appendChild($rad3);
+
+            $text3 = $doc->createTextNode($indic500);
+            $ind3 = $adr->appendChild($ind3);
+            $ind3->appendChild($text3);
+
+            $adr = $root->appendChild($adr);
+
+            return $doc;
+    }
+
+    /**
+     * Valide le fichier xml
+     * @param doc Le document xml
+     * @param string Chemin vers le fichier xsd
+     * @return Boolean True si valide, false sinon
+     */
+    function validate($doc, $path) {
+        if(!$doc->schemaValidate($path)) {
+            print 'DOMDocument::schemaValidate() Generated Errors!</n>';
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Sauvegarde le fichier xml
+     * @param doc Le document xml
+     * @param string Chemin de sauvegarde du fichier xml
+     */
+    function saveXMLDocument($doc, $path){
+        $doc->save($path);
+    }
 ?>
