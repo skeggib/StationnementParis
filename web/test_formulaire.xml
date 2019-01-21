@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<record>
+
+  <address number="17" street="Rue Ernest Cresson" district="14">
+    <indicator radius="100">1</indicator>
+    <indicator radius="200">0.7</indicator>
+    <indicator radius="500">0.8</indicator>
+  </address>
+
+  <address number="263" street="rue de Paris" district="15">
+    <indicator radius="100">0.6</indicator>
+    <indicator radius="200">0.7</indicator>
+    <indicator radius="500">1</indicator>
+  </address>
+  
+</record>
