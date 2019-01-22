@@ -31,6 +31,10 @@ if (!$result)
     return;
 }
 
+pcntl_signal(SIGTERM, "sig_handler");
+pcntl_signal(SIGINT, "sig_handler");
+pcntl_signal(SIGHUP, "sig_handler");
+
 // Boucle principale
 $i = 0;
 $start = microtime(true);
@@ -51,7 +55,7 @@ while ($adresse = $result->fetch())
         $indicateur200 = -1;//indicateur($pdo, $lon, $lat, 200);
         $indicateur500 = -1;//indicateur($pdo, $lon, $lat, 500);
 
-//        print($numero . " " . $suffix . " " . $voie . " " . $arrondissement . " " . $lon. " ". $lat." ". $indicateur100." ". $indicateur200. " ". $indicateur500."\n");
+        pcntl_signal_dispatch();
         $doc = addAddresse($doc, $numero, $suffix, $voie, $arrondissement, $lon, $lat, $indicateur100, $indicateur200, $indicateur500);
 
     } catch(Exception $e) {}
@@ -62,16 +66,27 @@ while ($adresse = $result->fetch())
 
     print($i . " / " . $count . " " . secondsToTimestampString($remaining_seconds) . " remaining" . "\n");
     $i++;
-    if ($i >= 5)
-        break;
 }
 print(secondsToTimestampString($elapsed_seconds) . " elapsed.\n").
 $pdo = null;
 
-saveXMLDocument($doc, $xml_path);
-if (!validate($doc, $xsd_path))
-    print("Document invalide.");
-else
-    print("Document valide.");
+save();
+
+function sig_handler($signo)
+{
+    save();
+    exit;
+}
+
+function save()
+{
+    global $doc, $xml_path, $xsd_path;
+    saveXMLDocument($doc, $xml_path);
+    if (!validate($doc, $xsd_path))
+        print("Document invalide.\n");
+    else
+        print("Document valide.\n");
+}
+
 
 ?>
