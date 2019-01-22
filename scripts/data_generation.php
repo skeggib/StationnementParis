@@ -48,8 +48,8 @@ while ($adresse = $result->fetch())
     {
         // Calcul des nouvelles données
         $indicateur100 = indicateur($pdo, $lon, $lat, 100);
-        $indicateur200 = indicateur($pdo, $lon, $lat, 200);
-        $indicateur500 = indicateur($pdo, $lon, $lat, 500);
+        $indicateur200 = -1;//indicateur($pdo, $lon, $lat, 200);
+        $indicateur500 = -1;//indicateur($pdo, $lon, $lat, 500);
 
         $doc = addAddresse($doc, $numero, $suffix, $voie, $arrondissement, $lon, $lat, $indicateur100, $indicateur200, $indicateur500);
 
@@ -60,7 +60,10 @@ while ($adresse = $result->fetch())
 
     print($i . " / " . $count . " " . secondsToTimestampString($remaining_seconds) . " remaining" . "\n");
     $i++;
+    if ($i >= 5)
+        break;
 }
+print(secondsToTimestampString($elapsed_seconds) . " elapsed.\n").
 $pdo = null;
 
 saveXMLDocument($doc, $xml_path);

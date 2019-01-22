@@ -20,7 +20,9 @@ function secondsToTimestampString($seconds)
     $hours = $seconds % 24;
     $seconds /= 24;
 
-    return "" . $hours . "h " . $min . "m " . $sec . "s";
+    $days = round($seconds);
+
+    return "" . $days . "d " . $hours . "h " . $min . "m " . $sec . "s";
 }
 
 ?>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<record>
+  <address number="9021" suffix="" street="" district="15" longitude="2.3006958132791" latitude="48.8483691115206">
+    <indicator radius="100">0.92211838006231</indicator>
+    <indicator radius="200">0.92211838006231</indicator>
+    <indicator radius="500">0.92211838006231</indicator>
+  </address>
+  <address number="9002" suffix="" street="" district="11" longitude="2.38748364112009" latitude="48.8623585186746">
+    <indicator radius="100">0.33839479392625</indicator>
+    <indicator radius="200">0.33839479392625</indicator>
+    <indicator radius="500">0.33839479392625</indicator>
+  </address>
+  <address number="9001" suffix="" street="" district="12" longitude="2.38077450741016" latitude="48.8430976517796">
+    <indicator radius="100">0</indicator>
+    <indicator radius="200">0</indicator>
+    <indicator radius="500">0</indicator>
+  </address>
+  <address number="1" suffix="" street="" district="15" longitude="2.28379492499551" latitude="48.8338207456438">
+    <indicator radius="100">0.84848484848485</indicator>
+    <indicator radius="200">0.84848484848485</indicator>
+    <indicator radius="500">0.84848484848485</indicator>
+  </address>
+  <address number="9001" suffix="" street="" district="15" longitude="2.29858575012436" latitude="48.8490186906172">
+    <indicator radius="100">0.44086886564763</indicator>
+    <indicator radius="200">0.44086886564763</indicator>
+    <indicator radius="500">0.44086886564763</indicator>
+  </address>
+</record>
