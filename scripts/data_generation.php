@@ -51,12 +51,14 @@ while ($adresse = $result->fetch())
         $indicateur200 = -1;//indicateur($pdo, $lon, $lat, 200);
         $indicateur500 = -1;//indicateur($pdo, $lon, $lat, 500);
 
+//        print($numero . " " . $suffix . " " . $voie . " " . $arrondissement . " " . $lon. " ". $lat." ". $indicateur100." ". $indicateur200. " ". $indicateur500."\n");
         $doc = addAddresse($doc, $numero, $suffix, $voie, $arrondissement, $lon, $lat, $indicateur100, $indicateur200, $indicateur500);
 
-        $time = microtime(true);
-        $elapsed_seconds = $time - $start;
-        $remaining_seconds = (($count - $i) / $i) * $elapsed_seconds;
     } catch(Exception $e) {}
+        
+    $time = microtime(true);
+    $elapsed_seconds = $time - $start;
+    $remaining_seconds = (($count - $i) / $i) * $elapsed_seconds;
 
     print($i . " / " . $count . " " . secondsToTimestampString($remaining_seconds) . " remaining" . "\n");
     $i++;
