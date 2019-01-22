@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<record>
+  <address number="9021" suffix="" street="" district="15" longitude="2.3006958132791" latitude="48.8483691115206">
+    <indicator radius="100">0.92211838006231</indicator>
+    <indicator radius="200">0.63655244029076</indicator>
+    <indicator radius="500">0.48215991692627</indicator>
+  </address>
+  <address number="9002" suffix="" street="" district="11" longitude="2.38748364112009" latitude="48.8623585186746">
+    <indicator radius="100">0.33839479392625</indicator>
+    <indicator radius="200">0.37960954446855</indicator>
+    <indicator radius="500">0.33926247288503</indicator>
+  </address>
+  <address number="9001" suffix="" street="" district="12" longitude="2.38077450741016" latitude="48.8430976517796">
+    <indicator radius="100">0</indicator>
+    <indicator radius="200">0</indicator>
+    <indicator radius="500">0</indicator>
+  </address>
+  <address number="1" suffix="" street="" district="15" longitude="2.28379492499551" latitude="48.8338207456438">
+    <indicator radius="100">0.84848484848485</indicator>
+    <indicator radius="200">2.0454545454545</indicator>
+    <indicator radius="500">2.3224242424242</indicator>
+  </address>
+  <address number="9001" suffix="" street="" district="15" longitude="2.29858575012436" latitude="48.8490186906172">
+    <indicator radius="100">0.44086886564763</indicator>
+    <indicator radius="200">0.48189863234111</indicator>
+    <indicator radius="500">0.38230088495575</indicator>
+  </address>
+  <address number="1" suffix="" street="RUE DE LA LINGERIE" district="1" longitude="2.3465068737988" latitude="48.8602828263144">
+    <indicator radius="100">0.29971181556196</indicator>
+    <indicator radius="200">0.27953890489914</indicator>
+    <indicator radius="500">0.27389048991354</indicator>
+  </address>
+  <address number="2" suffix="" street="RUE DE ROHAN" district="1" longitude="2.33544212612511" latitude="48.8629289323964">
+    <indicator radius="100">4.6060606060606</indicator>
+    <indicator radius="200">5.0909090909091</indicator>
+    <indicator radius="500">4.7175757575758</indicator>
+  </address>
+  <address number="15" suffix="" street="RUE DE L ARBRE SEC" district="1" longitude="2.34191881736756" latitude="48.8596434284032">
+    <indicator radius="100">0.84563758389262</indicator>
+    <indicator radius="200">0.56375838926175</indicator>
+    <indicator radius="500">0.52187919463087</indicator>
+  </address>
+  <address number="26" suffix="" street="RUE DE L ARBRE SEC" district="1" longitude="2.34220104479716" latitude="48.8599606517679">
+    <indicator radius="100">0.63087248322148</indicator>
+    <indicator radius="200">0.73489932885906</indicator>
+    <indicator radius="500">0.5261744966443</indicator>
+  </address>
+  <address number="28" suffix="" street="RUE DE L ARBRE SEC" district="1" longitude="2.34222235204631" latitude="48.8600003402595">
+    <indicator radius="100">0.60402684563758</indicator>
+    <indicator radius="200">0.73489932885906</indicator>
+    <indicator radius="500">0.52724832214765</indicator>
+  </address>
+</record>
