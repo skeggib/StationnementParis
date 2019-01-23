@@ -2,11 +2,9 @@
 
 *Création de données concernant le stationnement à Paris.*
 
-Nous utilisons des données open data de la ville de Paris pour créer un indicateur mettant en relation le nombre de places de parking et la densité de population. Nous utilisons pour cela un jeu de données qui présente les emplacement de stationnement sur la voie publique, un jeu de données qui présente les adresse de la ville et des données carroyées à 200 mètres de la population de Paris.
+Nous utilisons des données open data de la ville de Paris pour créer un indicateur mettant en relation le nombre de places de parking et la densité de population. Nous utilisons pour cela un jeu de données qui présente les emplacements de stationnement sur la voie publique, un jeu de données qui présente les adresses de la ville et des données carroyées à 200 mètres de la population de Paris.
 
-Les données que nous avons généré peuvent être téléchargées à l'adresse suivante : [http://skeggib.com/one-indicator.xml](http://skeggib.com/one-indicator.xml) (35Mo). Ainsi que le fichier xsd : [http://skeggib.com/registor.xsd](http://skeggib.com/registor.xsd).
-<!-- TODO Maj le lien du fichier XML ! -->
-<!-- TODO ne pas oublier de mettre le xsd avec -->
+Les données au format XML que nous avons généré peuvent être téléchargées à l'adresse suivante : [http://skeggib.com/stationnement_paris/indicateurs.xml](http://skeggib.com/stationnement_paris/indicateurs.xml) (35Mo). Ainsi que le fichier XML : [http://skeggib.com/stationnement_paris/registor.xsd](http://skeggib.com/stationnement_paris/registor.xsd).
 
 ## Données utilisées
 
@@ -31,24 +29,24 @@ Le dossier [import](import) contient les scripts d'importation des données :
 
 ### Données calculées
 
-La donnée que nous créons est, pour chaque adresse, des indicateurs mettant en relation le nombre de places existantes dans un rayon de n mètres autour de cette adresse et la la population estimée dans le cercle de rayon n. Le fichier XML que nous avons généré contient les indicateurs pour des rayons de 100, 200 et 500 mètres. L'indicateur est calculé en divisant le nombre de places dans le cercle par la population du cercle.
+Les données que nous créons sont, pour chaque adresse, des indicateurs mettant en relation le nombre de places existantes dans un rayon de n mètres autour de cette adresse et la population estimée dans le cercle de rayon n. Le fichier XML que nous avons généré contient les indicateurs pour des rayons de 100, 200 et 500 mètres. L'indicateur est calculé en divisant le nombre de places dans le cercle par la population du cercle.
 
 ## Format des données
 
-### Description du ficher xml
+### Description du fichier XML
 
-Le fichier xml est structuré de la manière suivante :
-- la balise `<record></record>` est la racine du ficher, c'est elle qui contient les adresses.
-- les adresses `<address></address>` contiennent les indicateurs et possèdent les attributs suivants:
-    - `number` : indiquant le numéro de l'adresse.
-    - `suffix` : indiquant le suffix du numéro (bis, ter, ...).
-    - `street` : le nom de la rue.
-    - `district` : le numéro d'arrondissement.
-    - `longitude` : la longitude de la position géographique de l'adresse
-    - `latitude` : la latitude de la position géographique de l'adresse
-- les indicateurs `<indicator></indicator>`, ils y en a trois par adresse. Ils correspondent au ratio nombre de place / population dans le rayon `radius` indiqué en attribut. Les trois rayons ont pour valeur 100, 200 et 500 mètres.
+Le fichier XML est structuré de la manière suivante :
+- La balise `<record></record>` est la racine du ficher, c'est elle qui contient les adresses.
+- Les adresses `<address></address>` contiennent les indicateurs et possèdent les attributs suivants:
+    - `number` : Le numéro de l'adresse.
+    - `suffix` : Le suffixe du numéro (bis, ter, ...).
+    - `street` : Le nom de la rue.
+    - `district` : Le numéro d'arrondissement.
+    - `longitude` : La longitude de la position géographique de l'adresse
+    - `latitude` : La latitude de la position géographique de l'adresse
+- Trois indicateurs `<indicator></indicator>`. Ils correspondent au ratio nombre de place / population dans le rayon `radius` indiqué en attribut. Les trois rayons ont pour valeur 100, 200 et 500 mètres.
 
-Un exemple d'une entrée dans le fichier XML pourrait être :
+Une entrée dans le fichier XML pourrait par exemple être :
 
 ```xml
 <address number="17"
@@ -65,8 +63,8 @@ Un exemple d'une entrée dans le fichier XML pourrait être :
 
 ### Validation
 
-Le xml est vérifié grâce à un fichier xsd. La vérification est effectué à la fin de la création du fichier xml. 
-Le fichier xsd est à transmettre avec le xml afin que les personnes souhaitant utiliser nos données puissent le vérifier à leur tour avant utilisation.
+Les données XML dont vérifiées grâce à un fichier XSD. La vérification est effectuée à la fin de la création du fichier XML. 
+Le fichier XSD est à transmettre avec le XML afin que les personnes souhaitant utiliser nos données puissent le vérifier à leur tour avant utilisation.
 
 ## Précautions d'utilisation
 
@@ -74,7 +72,7 @@ Les données utilisées n'étant pas parfaitement adaptées à notre application
 
 ### Position des places de stationnement
 
-Les données des places de stationnement ne recensent pas les places individuellement par groupes de places consécutives. Cela veux dire que si une rue comporte 10 places adjacentes elles seront représentée par une seule entrée d'une capacité de 10 voitures avec une seule position géographique (généralement le centre du groupe de places).
+Les données des places de stationnement ne recensent pas les places individuellement mais par groupes de places consécutives. Cela veut dire que si une rue comporte 10 places adjacentes elles seront représentées par une seule entrée d'une capacité de 10 voitures avec une seule position géographique (généralement le centre du groupe de places).
 
 Cela a un impact sur nos données parce qu'une adresse se trouvant proche du centre du groupe de places (de leur position géographique) comptabilisera beaucoup plus de places qu'une adresse dans la même rue mais plus loin du centre du groupe, même si ces places d'étendent jusqu'à cette deuxième adresse.
 
@@ -82,8 +80,8 @@ Nos données contiennent ainsi des valeurs aberrantes dans le cas où beaucoup d
 
 ### Distance entre l'adresse et les places
 
-Pour calculer le nombre de place en dessous d'une certaine distance n d'une adresse nous prenons en compte les places dans le cercle de rayon n. Cela peut être faussé par le géométrie de certaines rues. Par exemple, une personne devrait contourner un bâtiment pour accéder à une place, rendant le trajet plus long que prévu. Une amélioration possible de cet aspect pourrait être la calcul de la distance réelle entre une adresse et une place (par exemple avec du pathfinding).
+Pour calculer le nombre de place en dessous d'une certaine distance n d'une adresse nous prenons en compte les places dans le cercle de rayon n. Cela peut être faussé par le géométrie de certaines rues. Par exemple, une personne pourrait devoir contourner un bâtiment pour accéder à une place, rendant le trajet plus long que prévu. Une amélioration possible de cet aspect pourrait être le calcul de la distance réelle entre une adresse et une place (par exemple avec du pathfinding).
 
 ## Formulaire web
 
-Nous avons créé une page web exploitant les données du xml. Cette page web propose un formulaire permettant d'entrer l'adresse à rechercher et le rayon souhaité. Les données entrées dans le formulaire permettent d'obtenir l'indicateur pour le rayon souhaité ainsi qu'une carte indiquant la position géographique de l'adresse et un dessin du cercle permettant de visualiser la zone concerné par l'indicateur. 
+Nous avons créé une page web exploitant les données du fichier XML. Cette page web propose un formulaire permettant d'entrer l'adresse à rechercher et le rayon souhaité. Les données entrées dans le formulaire permettent d'obtenir l'indicateur pour le rayon souhaité ainsi qu'une carte indiquant la position géographique de l'adresse et un dessin du cercle permettant de visualiser la zone concernée par l'indicateur. 
