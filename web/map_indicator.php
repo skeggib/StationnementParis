@@ -37,7 +37,7 @@
 							if($attindicator->radius == $_POST['radius'])
 							{
 								$place = intval(number_format(floatval($indicator),2) * 10);
-								echo "Pour votre adresse : ".$_POST['number'].", ".$_POST['street']." 750".$_POST['district']." PARIS, il existe environ ".$place." places pour 10 personnes.";
+								echo "Pour votre adresse : ".$_POST['number'].", ".$_POST['street']." 750".$_POST['district']." PARIS, il existe environ ".$place." places pour 10 personnes dans un rayon de ".$_POST['radius']."m.";
 
 								$longitude = $attAddress->longitude;
 								$latitude = $attAddress->latitude;
