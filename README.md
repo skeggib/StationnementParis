@@ -4,7 +4,7 @@
 
 Nous utilisons des données open data de la ville de Paris pour créer un indicateur mettant en relation le nombre de places de parking et la densité de population. Nous utilisons pour cela un jeu de données qui présente les emplacements de stationnement sur la voie publique, un jeu de données qui présente les adresses de la ville et des données carroyées à 200 mètres de la population de Paris.
 
-Les données au format XML que nous avons généré peuvent être téléchargées à l'adresse suivante : [http://skeggib.com/stationnement_paris/indicateurs.xml](http://skeggib.com/stationnement_paris/indicateurs.xml) (35Mo). Ainsi que le fichier XML : [http://skeggib.com/stationnement_paris/registor.xsd](http://skeggib.com/stationnement_paris/registor.xsd).
+Les données au format XML que nous avons généré peuvent être téléchargées à l'adresse suivante : [http://skeggib.com/stationnement_paris/indicateurs.xml](http://skeggib.com/stationnement_paris/indicateurs.xml) (38Mo). Ainsi que le fichier XML : [http://skeggib.com/stationnement_paris/registor.xsd](http://skeggib.com/stationnement_paris/registor.xsd).
 
 ## Données utilisées
 
